@@ -1,0 +1,20 @@
+# ymlファイルのバージョン指定
+version: '3'
+# コンテナを定義
+services:
+    # サービス1
+    db:
+        image: postgres
+    # サービス2
+    webserver:
+        # Dockerfileをビルド
+        build: .
+        command: python3 manage.py runserver 0.0.0.0:8000
+        # マウント場所を指定
+        volumes:
+            - .:/app
+        ports:
+            - "8000:8000"
+        # dbサービスが立ち上がってから起動するように指定
+        depends_on:
+            - db

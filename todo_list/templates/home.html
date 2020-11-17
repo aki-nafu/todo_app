@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+  To-Do List
+{% endblock %}
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissable" role="alert">
+            <button class="close" data-dismiss="alert">
+                <small><sup>x</sup></small>
+            </button>
+            {{ message }}
+        </div>
+    {% endfor 1%}
+{% endif %}
+
+    {% if all_items %}
+    <table class="table table-bordered">
+        <tr class="table-primary">
+            <th>TO-DO ITEM</th>
+            <th><center>STATUS CHANGE</center></th>
+            <th><center>DELETE ITEM</center></th>
+        </tr>
+        {% for todo in all_items %}
+            {% if todo.completed %}
+                <tr class="table-secondary">
+                    <td class="striker"><a href="{% url 'edit' todo.id %}">{{ todo.item }}</a></td>
+                    <td><center><a href="{% url 'uncomplete' todo.id %}"><div class="bg-warning rounded">Uncomplete</div></a></center></td>
+                    <td><center><a href="{% url 'delete' todo.id %}"><div class="bg-warning rounded">Delete</div></a></center></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td><a href="{% url 'edit' todo.id %}">{{ todo.item }}</td></td>
+                    <td><center><a href="{% url 'complete' todo.id %}"><div class="bg-light rounded">Complete</div></a></center></td>
+                    <td><center><a href="{% url 'delete' todo.id %}"><div class="bg-light rounded">Delete</div></a></center></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}
