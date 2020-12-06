@@ -69,6 +69,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'todo_app.wsgi.application'
+#k
 
 
 # Database
