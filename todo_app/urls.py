@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 # include追加
 from django.urls import path, include
+from django.contrib.auth.views import logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # 追加
     path('', include('todo_list.urls')),
+    
 ]
+
+
