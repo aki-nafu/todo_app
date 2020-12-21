@@ -17,13 +17,15 @@ def home(request):
         form = ListForm(request.POST or None)
 
         if form.is_valid():
-            form.save()
-            all_items = List.objects.all
+            item = List(item=request.POST["item"],u_id=request.user.id)
+            item.save()
+            current_users_items=List.objects.filter(u_id=request.user.id)
             messages.success(request, ('Item Has Been Added To List'))
-            return render(request, 'list.html', {'all_items': all_items})
+            return render(request, 'list.html', {'current_users_items': current_users_items})
     else:
-        all_items = List.objects.all
-        return render(request, 'list.html', {'all_items': all_items})
+        #all_items = List.objects.all
+        current_users_items=List.objects.filter(u_id=request.user.id)
+        return render(request, 'list.html', {'current_users_items': current_users_items})
 
 @login_required
 def about(request):
@@ -59,7 +61,8 @@ def edit(request, list_id):
 
         if form.is_valid():
             form.save()
-            all_items = List.objects.all
+            #all_items = List.objects.all
+            current_users_items=List.objects.filter(u_id=request.user.id)
             messages.success(request, ('Item Has Been Edited!'))
             return redirect('home')
     else:
@@ -111,12 +114,13 @@ def profile(request):
 
         if form.is_valid():
             form.save()
-            all_items = List.objects.all
+            current_users_items=List.objects.filter(u_id=request.user.id)
+            
             messages.success(request, ('Item Has Been Added To List'))
-            return render(request, 'list.html', {'all_items': all_items})
+            return render(request, 'list.html', {'current_users_items': current_users_items})
     else:
-        all_items = List.objects.all
-        return render(request, 'list.html', {'all_items': all_items})
+        current_users_items=List.objects.filter(u_id=request.user.id)
+        return render(request, 'list.html', {'current_users_items': current_users_items})
 
 
     return render(request, 'list.html')

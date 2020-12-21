@@ -15,26 +15,28 @@
     {% endfor 1%}
 {% endif %}
 
-    {% if all_items %}
+    {% if current_users_items %}
     <table class="table table-bordered">
         <tr class="table-primary">
             <th>TO-DO ITEM</th>
             <th><center>STATUS CHANGE</center></th>
             <th><center>DELETE ITEM</center></th>
         </tr>
-        {% for todo in all_items %}
-            {% if todo.completed %}
-                <tr class="table-secondary">
-                    <td class="striker"><a href="{% url 'edit' todo.id %}">{{ todo.item }}</a></td>
-                    <td><center><a href="{% url 'uncomplete' todo.id %}"><div class="bg-warning rounded">Uncomplete</div></a></center></td>
-                    <td><center><a href="{% url 'delete' todo.id %}"><div class="bg-warning rounded">Delete</div></a></center></td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td><a href="{% url 'edit' todo.id %}">{{ todo.item }}</td></td>
-                    <td><center><a href="{% url 'complete' todo.id %}"><div class="bg-light rounded">Complete</div></a></center></td>
-                    <td><center><a href="{% url 'delete' todo.id %}"><div class="bg-light rounded">Delete</div></a></center></td>
-                </tr>
+        {% for todo in current_users_items %}
+            {% if todo.u_id=user.id %}
+                {% if todo.completed %}
+                    <tr class="table-secondary">
+                        <td class="striker"><a href="{% url 'edit' todo.id %}">{{ todo.item }}</a></td>
+                        <td><center><a href="{% url 'uncomplete' todo.id %}"><div class="bg-warning rounded">Uncomplete</div></a></center></td>
+                        <td><center><a href="{% url 'delete' todo.id %}"><div class="bg-warning rounded">Delete</div></a></center></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td><a href="{% url 'edit' todo.id %}">{{ todo.item }}</td></td>
+                        <td><center><a href="{% url 'complete' todo.id %}"><div class="bg-light rounded">Complete</div></a></center></td>
+                        <td><center><a href="{% url 'delete' todo.id %}"><div class="bg-light rounded">Delete</div></a></center></td>
+                    </tr>
+                {% endif %}
             {% endif %}
         {% endfor %}
     </table>

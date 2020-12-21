@@ -11,8 +11,10 @@
     <p>こんにちは，{{ user.username }}さん</p>
     <a href="{% url 'logout' %}">ログアウトする</a>
     {% else %}
-    <a href="{% url 'login' %}">ログイン</a>
-    <a href="{% url 'create_account' %}">アカウント作成</a>
+    <div style="display: flex; flex-direction: column; align-items: center; margin:70px auto; background:#343a40; width:347px; padding:60px; height:350px; border-radius:10px">
+     <a href="{% url 'login' %}" style="position:relative; margin-top:30px; margin-bottom:0px; padding:10px; font-size:1.2em; background:#20c997; cursor:pointer; color:#f8f9fa; border-radius: 8px; border: none; text-align:center; width:100px">Login</a>
+     <a href="{% url 'create_account' %}" style="position:relative; margin-top:70px;  padding:10px; font-size:1.2em; background:#20c997; cursor:pointer; color:#f8f9fa; border-radius: 8px; border: none; text-align:center; width:100px">Sign up</a>
+    </div>
     {% endif %}
   </body>
 {% endblock %}

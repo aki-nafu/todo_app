@@ -7,18 +7,19 @@ Create_account
 
 {% block content %}
   <body>
-    <form method="POST" action="{% url 'create_account' %}">
+    <form method="POST" action="{% url 'create_account' %}" style="margin:70px auto; background:#343a40; width:347px; text-align:center; padding:60px; border-radius:10px; width:450px">
       {% csrf_token %}
-      <label>ユーザーID</label>
+      <h1 style="color:#f8f9fa; text-shadow:1px 1px 0px rgba(0, 0, 0, 0.7); font-weight:400; margin-bottom:20px;" >Sign up</h1>
+      <label style="color:#f8f9fa; margin:10px">ユーザーID</label>
       {{ form.username }}
-      {{ form.username.errors }}
-      <label>パスワード</label>
+      <div style= "color: #ffd900;">{{ form.username.errors }}</div>
+      <label style="color:#f8f9fa; margin:10px">パスワード</label>
       {{ form.password1 }}
-      {{ form.password1.errors }}
-      <label>パスワード(確認)</label>
+      <div style= "color: #ffd900;">{{ form.password1.errors }}</div>
+      <label style="color:#f8f9fa; margin:10px">パスワード(確認)</label>
       {{ form.password2 }}
-      {{ form.password2.errors }}
-      <button type = "submit">登録</button>
+      <div style= "color: #ffd900;">{{ form.password2.errors }}</div>
+      <button type = "submit" style="position:relative; margin-top:30px; margin-bottom:0px; padding:10px; width:100px; font-size:1.2em; background:#20c997; cursor:pointer; color:#f8f9fa; border-radius: 8px; border: none">Sign up</button>
     </form>
   </body>
 {% endblock %}
