@@ -9,15 +9,18 @@ Login
     {% if form.errors  %}
     <p>ユーザーID, パスワードが一致しません．</p>
     {% endif %}
-    <form method="POST" action="{% url 'login' %}">
+    <form class = 'login' style="margin:70px auto; background:#343a40; width:347px; text-align:center; padding:60px; border-radius:10px " method="POST" action="{% url 'login' %}">
       {% csrf_token %}
-      <label>ユーザーID</label>
+      <h1 style="color:#f8f9fa; text-shadow:1px 1px 0px rgba(0, 0, 0, 0.7); font-weight:400; margin-bottom:20px;">Login</h1>
+      <label style="color:#f8f9fa; margin:10px">ユーザーID</label>
+      <p style="color:#f8f9fa; font-size:13px; margin:0px">テストID:1234</p>
       {{ form.username }}
       {{ form.username.errors }}
-      <label>パスワード</label>
+      <label style="color:#f8f9fa; margin:15px 0px 10px 0px">パスワード</label>
+      <p style="color:#f8f9fa; font-size:13px; ; margin:0px">テストPW:qazwsxedc</p>
       {{ form.password }}
       {{ form.password.errors }}
-      <button type = "submit">ログイン</button>
+      <button type = "submit" style="position:relative; margin-top:30px; margin-bottom:0px; padding:10px; width:100px; font-size:1.2em; background:#20c997; cursor:pointer; color:#f8f9fa; border-radius: 8px; border: none">Login</button>
     </form>
   </body>
 {% endblock %}
